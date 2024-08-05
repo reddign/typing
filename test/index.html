@@ -1,0 +1,41 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="style.css" rel="stylesheet">
+    <title>Typing Test</title>
+</head>
+<body>
+    <h1 style="font-family: monospace;">Typing Test</h1>
+
+    <div id="typing-area" class="center" style="margin-bottom: 1%;">
+        <p id="text"></p>
+        <div class="center">
+            <input type="text" id="text-input" autocapitalize="off" autocomplete="off" spellcheck="false">
+        </div>
+    </div>
+
+    <div class="center">
+        <button id="play-again" type="button" class="hidden" style="margin-bottom: 50px;" onclick="window.location.reload()">Play Again</button>
+    </div>
+    
+    <div class="flex-container center hidden" id="results">
+        <div class="flex-child">
+            <b>Statistics</b>
+            <ul>
+                <li id="wpm">WPM:</li>
+                <li id="accuracy">Accuracy:</li>
+            </ul>
+        </div>
+
+        <div class="flex-child">
+            <b>Rankings</b>
+            <ul>
+                <li id="global">Global: calculating...</li>
+                <li id="personal">Personal: calculating...</li>
+            </ul>
+        </div>
+    </div>
+    <script src="main.js"></script>
+</body>
+</html>
