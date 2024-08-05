@@ -1,1 +1,1 @@
-*.env
+/libs/dbcreds.ini

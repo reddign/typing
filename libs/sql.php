@@ -1,7 +1,7 @@
 <?php
-static $test = 1;
-define("DBC", new SQLConnection("195.35.59.14", "u121755072_henryj2", "Jee22m88", "u121755072_henryj2db"));
-// define("DBC", new SQLConnection("localhost", "root", "", "mca"));
+$ini_array = parse_ini_file("dbcreds.ini");
+$connection = new SQLConnection($ini_array['ip'], $ini_array['username'], $ini_array['password'], $ini_array['schema']);
+unset($ini_array);
 class SQLConnection {
     private $conn;
 
