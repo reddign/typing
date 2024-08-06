@@ -99,14 +99,14 @@ class Level {
     /**
      * Get a value or if it doesn't exist, return the default value or throw an error
      */
-    private static function get($val, $def = null): mixed {
-        if (isset($val)) {
-            return $val;
+    private static function get(array $array, string $key, $def = null): mixed {
+        if (array_key_exists($key, $array)) {
+            return $array[$key];
         }
         if ($def != null) {
             return $def;
         }
-        die("get(): \$val is not set and no default was provided");
+        die("get(): $key is not set and no default was provided");
     }
 
     /**
@@ -125,11 +125,11 @@ class Level {
                 $section = $ini[$key];
                 $level = new Level(
                     $key, 
-                    Level::get($section['name']),
-                    LowercasePolicy::tryFrom(Level::get($section['lowercase'], 'none')),
-                    intval(Level::get($section['words'], 1)),
-                    SelectionType::tryFrom(Level::get($section['selection'])),
-                    Level::get($section['category'], '')
+                    Level::get($section, 'name'),
+                    LowercasePolicy::tryFrom(Level::get($section, 'lowercase', 'none')),
+                    intval(Level::get($section, 'words', 1)),
+                    SelectionType::tryFrom(Level::get($section, 'selection')),
+                    Level::get($section, 'category', '')
                 );
                 
                 // add level to $levels under its category
