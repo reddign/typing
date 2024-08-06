@@ -25,14 +25,16 @@ class Level {
     public string $name;
     public LowercasePolicy $policy;
     public int $words;
+    public int $wordlength;
     public SelectionType $type;
     public string $category;
 
-    private function __construct(string $source_name, string $name, LowercasePolicy $policy, int $words, SelectionType $type, string $category) {
+    private function __construct(string $source_name, string $name, LowercasePolicy $policy, int $words, int $wordlength, SelectionType $type, string $category) {
         $this->source_name = $source_name;
         $this->name = $name;
         $this->policy = $policy;
         $this->words = $words;
+        $this->wordlength = $wordlength;
         $this->type = $type;
         $this->category = $category;
     }
@@ -50,6 +52,7 @@ class Level {
                 // chose words randomly from a database
                 $result = $connection->query("SELECT DISTINCT word FROM "
                     . $connection->escape_string($this->source_name)
+                    . ($this->wordlength > 0? " WHERE char_length(word) <= $this->wordlength" : "")
                     . " ORDER BY rand()"
                     . ($this->words > 0? " LIMIT $this->words" : "")
                 );
@@ -73,9 +76,15 @@ class Level {
                 } else {
                     $text = preg_split('/\s+/', $line);
                 }
+
+                // remove words exceeding the wordlength
+                if ($this->wordlength > 0) {
+                    $text = array_filter($text, fn ($word) => strlen($word) <= $this->wordlength);
+                }
                 break;
         }
 
+        // apply lowercase policy
         foreach ($text as $index => &$word) {
             switch ($this->policy) {
                 case LowercasePolicy::All:
@@ -128,15 +137,16 @@ class Level {
                     Level::get($section, 'name'),
                     LowercasePolicy::tryFrom(Level::get($section, 'lowercase', 'none')),
                     intval(Level::get($section, 'words', 1)),
+                    intval(Level::get($section, 'wordlength', '-1')),
                     SelectionType::tryFrom(Level::get($section, 'selection')),
-                    Level::get($section, 'category', '')
+                    Level::get($section, 'category', "\0")
                 );
                 
                 // add level to $levels under its category
                 $categories = explode('.', $level->category );
                 $map = &Level::$levels;
                 foreach ($categories as $category) {
-                    if ($category == '') {
+                    if ($category == "\0") {
                         continue;
                     }
                     if (!isset($map[$category])) {
