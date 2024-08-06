@@ -4,6 +4,9 @@
 - [test](test) - where the user takes a test from the selected level
 - [level](level) - level selection page
 - [libs](libs) - miscellaenous libraries needed for other pages
+- [login](login) - pages for user login and registration
+- [ranking](ranking) - user rankings page(s)
+- [home](home) - website homepage
 
 #### Running from source
 - Clone the repo with ```git clone https://github.com/reddign/typing.git```
