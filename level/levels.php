@@ -90,7 +90,6 @@ class Level {
                     if (!isset($map[$category])) {
                         $map[$category] = [];
                     }
-                    echo "category now: $category<br>";
                     $map = &$map[$category];
                 }
                 array_push($map, $level);
@@ -121,16 +120,11 @@ class Level {
         }
 
         // put levels in their categories
-        print_r(array_keys(Level::$levels));
-        echo "<pre>";
         Level::print_category_map(Level::$levels, '', 0);
-        echo "</pre>";
     }
 
     /** Recursively print a map */
     private static function print_category_map(array &$map, string $category, int $layer): void {
-        echo "CAT: $category";
-        print_r($map);
         if ($layer > 0) {
             if ($layer > 6) {
                 $layer = 6;
@@ -138,14 +132,18 @@ class Level {
             echo "<h$layer>$category</h$layer>";
         }
         echo "<ul>";
+        // add tests in the category, then add subcategories
         foreach ($map as $key => $value) {
-            if (is_array($value)) {
-                Level::print_category_map($value, $key, $layer + 1);
-            } else if ($value instanceof Level) {
+            if ($value instanceof Level) {
                 echo "<li><a href=\"../test/?level=$value->source_name\">$value->name</a></li>";
             }
         }
-        echo "</ul";
+        foreach ($map as $key => $value) {
+            if (is_array($value)) {
+                Level::print_category_map($value, $key, $layer + 1);
+            }
+        }
+        echo "</ul>";
     }
 }
 
