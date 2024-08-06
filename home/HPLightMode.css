@@ -10,13 +10,21 @@ ul {
 ul button {
     border-radius: 12px;
     float: right;
-    padding: 10px 20px;
-    margin-top: 30px;
+    padding: 5px 5px;
+    margin-top: 40px;
     margin-right: 10px;
     border-color: #2c2e03;
     color: #2c2e03;
     cursor: pointer;
     background-color: #f6f5ac;
+}
+
+ul .btn-group button {
+    padding: 10px 20px;
+    margin-top: 30px;
+    background-color: #f6acac;
+    border-color: #2e0303;
+    color: #2e0303;
 }
 
 li {
@@ -38,7 +46,7 @@ li a {
 }
 
 li a:hover {
-    background-image: radial-gradient(#91C9E8, #E8F8FF 60%);
+    background-image: radial-gradient(#b9e3fa, #E8F8FF 60%);
     /*background-color: rgb(22, 2, 94);*/
 }
 
