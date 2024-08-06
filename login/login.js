@@ -1,4 +1,4 @@
-function loginForm() {
+function loginForm(event) {
     event.preventDefault();
 
     let loginform = document.getElementById("login_form");
