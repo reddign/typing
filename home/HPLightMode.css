@@ -17,6 +17,7 @@ ul button {
     color: #2c2e03;
     cursor: pointer;
     background-color: #f6f5ac;
+    font-family: Arial, "Helvetica Neue", Helvetica, sans-serif;
 }
 
 ul .btn-group button {
@@ -35,7 +36,7 @@ li a {
     /* 1 pixel black shadow to left, top, right and bottom */
     text-shadow: -1px 0 #f6f5ac, 0 1px #f6f5ac, 1px 0 #f6f5ac, 0 -1px #f6f5ac;
 
-    font-family: sans; color: #2c2e03;
+    font-family: 'Times New Roman', Times, serif; color: #2c2e03;
 
     display: block;
     color: #2c2e03;
