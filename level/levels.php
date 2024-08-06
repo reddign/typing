@@ -136,7 +136,7 @@ class Level {
                     $key, 
                     Level::get($section, 'name'),
                     LowercasePolicy::tryFrom(Level::get($section, 'lowercase', 'none')),
-                    intval(Level::get($section, 'words', 1)),
+                    intval(Level::get($section, 'words', '-1')),
                     intval(Level::get($section, 'wordlength', '-1')),
                     SelectionType::tryFrom(Level::get($section, 'selection')),
                     Level::get($section, 'category', "\0")
