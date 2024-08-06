@@ -25,12 +25,12 @@ const elements = Object.freeze({
 
 class Test {
     /**
-     * @param {string} wordlist the name of the wordlist to use
+     * @param {string} level the name of the level to use
      * @param {HTMLParagraphElement} textP the element to put the words in
      * @param {HTMLInputElement} input the element to take input from
      * @param {HTMLPreElement} result the element to put the test's results in
      */
-    constructor(wordlist, textP, input, result) {
+    constructor(level, textP, input, result) {
         this.errors = 0;
         this.active = false;
         this.startTime = -1;
@@ -39,14 +39,18 @@ class Test {
 
         // get test text
         textP.innerText = "Fetching words. . .";
-        httpAsyncGet("../level/fetch.php?name=" + wordlist, (request) => {
+        if (level == null) {
+            textP.innerText = "Invalid URL: please select a level first!";
+            throw new Error("No level provided");
+        }
+        httpAsyncGet("../level/fetch.php?level=" + new String(level).toString(), (request) => {
             switch (request.status) {
                 case 200: // success
                     textP.innerText = request.responseText;
                     this.words = request.responseText.split(/\s+/);
                     this.#start();
                     break;
-                case 400: // invalid wordlist provided
+                case 400: // invalid level provided
                 case 404:
                     textP.innerText = "Requested level couldn't be found";
                     break;
@@ -135,7 +139,7 @@ class Test {
     }
 }
 
-let test = new Test('test', 
+let test = new Test(new URLSearchParams(window.location.search).get('level'), 
     document.getElementById("text"), 
     document.getElementById("text-input")
 );

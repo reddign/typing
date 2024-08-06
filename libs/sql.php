@@ -12,12 +12,17 @@ class SQLConnection {
         }
     }
 
-    function query(string $sql) {
+    /**
+     * Runs a SQL query
+     * @return array|bool if the query returns results, an array is returned, otherwise, a boolean representing
+     * the success of the operation is returned
+     */
+    function query(string $sql): array | bool {
         $result = $this->conn->query($sql);
         if ($result instanceof mysqli_result) {
             return mysqli_fetch_all($result, MYSQLI_ASSOC);     
         }
-        return [];
+        return $result;
     }
 
     function escape_string(string $str) {

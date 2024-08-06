@@ -1,4 +1,5 @@
 <?php
+require_once '../libs/sql.php';
 
 enum LowercasePolicy: string {
     /** All letters are lowercase */
@@ -41,7 +42,58 @@ class Level {
      * @return string the text to be typed in the test
      */
     public function get_test(): string {
-        return '';
+        global $connection;
+
+        $text = [];
+        switch ($this->type) {
+            case SelectionType::Database:
+                // chose words randomly from a database
+                $result = $connection->query("SELECT DISTINCT word FROM "
+                    . $connection->escape_string($this->source_name)
+                    . " ORDER BY rand()"
+                    . ($this->words > 0? " LIMIT $this->words" : "")
+                );
+
+                if (is_array($result)) {
+                    foreach ($result as $word) {
+                        array_push($text, $word['word']);
+                    }
+                } else {
+                    http_response_code(400);
+                    die("Level has an invalid DB table name (\"$this->source_name\")");
+                }
+                break;
+            
+            case SelectionType::File:
+                // choose a random line from the file
+                $file = file("wordlists/$this->source_name.txt", FILE_SKIP_EMPTY_LINES | FILE_IGNORE_NEW_LINES);
+                $line = $file[rand(0, sizeof($file) - 1)];
+                if ($this->words > 0 && strlen($line) > $this->words) {
+                    $text = array_slice(preg_split('/\s+/', $line, $this->words + 1), 0, $this->words);
+                } else {
+                    $text = preg_split('/\s+/', $line);
+                }
+                break;
+        }
+
+        foreach ($text as $index => &$word) {
+            switch ($this->policy) {
+                case LowercasePolicy::All:
+                    $word = strtolower($word);
+                    break;
+                case LowercasePolicy::FirstLetter:
+                    $word = ucfirst(strtolower($word));
+                    break;
+                case LowercasePolicy::FirstWord:
+                    if ($index == 0) {
+                        $word = ucfirst(strtolower($word));
+                    } else {
+                        $word = strtolower($word);
+                    }
+                    break;
+            }
+        }
+        return implode(' ', $text);
     }
 
     /**
@@ -60,7 +112,7 @@ class Level {
     /**
      * Load level data from the .ini file and save it to $levels
      */
-    private static function load_levels(): void {
+    public static function load_levels(): void {
         // load levels
         $ini = parse_ini_file('levels.ini', true);
         if (!$ini) {
@@ -98,13 +150,22 @@ class Level {
     }
 
     /**
-     * Get a level by the name of its source file/database
+     * Recursively get a level by the name of its source file/database
      * @param string $source_name the source_name of the level to get
      * @return Level|false The corresponding level, or false if it couldn't be found
      */
-    public static function get_level(string $source_name): Level | false {
-        foreach (Level::$levels as $level) {
-            if ($level->source_name == $source_name) {
+    public static function get_level(string $source_name, $array = null): Level | false {
+        if ($array == null) {
+            // $array can't be assigned to $levels in the param list because get_level is a static function
+            $array = Level::$levels;
+        }
+        foreach ($array as &$level) {
+            if (is_array($level)) {
+                $has_level = Level::get_level($source_name, $level);
+                if ($has_level instanceof Level) {
+                    return $has_level;
+                }
+            } else if ($level instanceof Level && $level->source_name == $source_name) {
                 return $level;
             }
         }
