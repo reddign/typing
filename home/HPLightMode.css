@@ -9,6 +9,14 @@ ul {
 
 ul button {
     border-radius: 12px;
+    float: right;
+    padding: 10px 20px;
+    margin-top: 30px;
+    margin-right: 10px;
+    border-color: #2c2e03;
+    color: #2c2e03;
+    cursor: pointer;
+    background-color: #f6f5ac;
 }
 
 li {
@@ -17,7 +25,7 @@ li {
 
 li a {
     /* 1 pixel black shadow to left, top, right and bottom */
-    text-shadow: -1px 0 rgb(246, 245, 172), 0 1px rgb(246, 245, 172), 1px 0 rgb(246, 245, 172), 0 -1px rgb(246, 245, 172);
+    text-shadow: -1px 0 #f6f5ac, 0 1px #f6f5ac, 1px 0 #f6f5ac, 0 -1px #f6f5ac;
 
     font-family: sans; color: #2c2e03;
 

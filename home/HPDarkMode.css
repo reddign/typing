@@ -7,6 +7,18 @@ ul {
     background-color: rgb(23, 8, 86);
 }
 
+ul button {
+    border-radius: 12px;
+    float: right;
+    padding: 10px 20px;
+    margin-top: 30px;
+    margin-right: 10px;
+    border-color: #f6f5ac;
+    color: #f6f5ac;
+    cursor: pointer;
+    background-color: #2c2e03;
+}
+
 li {
     float: left;
 }
@@ -15,10 +27,10 @@ li a {
     /* 1 pixel black shadow to left, top, right and bottom */
     text-shadow: -1px 0 #2c2e03, 0 1px #2c2e03, 1px 0 #2c2e03, 0 -1px #2c2e03;
 
-    font-family: sans; color: rgb(246, 245, 172);
+    font-family: sans; color: #f6f5ac;
 
     display: block;
-    color: rgb(246, 245, 172);
+    color: #f6f5ac;
     padding: 24px 26px;
     text-decoration: none;
     font-size: 20px;
