@@ -3,6 +3,7 @@
 // example usage: https://typing.etownmca.com/level/fetch.php?table=TABLENAME&words=20&lower=true
 
 require '../libs/sql.php';
+require 'levels.php';
 
 if (!(isset($_GET['table']) && isset($_GET['words']) && isset($_GET['lower']))) {
     http_response_code(400); // malformed/missing GET paramaters

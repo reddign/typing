@@ -39,7 +39,7 @@ class Test {
 
         // get test text
         textP.innerText = "Fetching words. . .";
-        httpAsyncGet("wordlists/fetch.php?name=" + wordlist, (request) => {
+        httpAsyncGet("../level/fetch.php?name=" + wordlist, (request) => {
             switch (request.status) {
                 case 200: // success
                     textP.innerText = request.responseText;
