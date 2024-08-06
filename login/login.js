@@ -5,9 +5,10 @@ function loginForm(event) {
     let user = loginform.elements["username"].value;
     let password = loginform.elements["password"].value;
 
-    if(user=="" ||  password==""){
+    if(user=="" || password==""){
         alert(`You forgot to type a username or password`);
-    }else{
+    }
+    else{
         loginform.submit();
     }
 }
