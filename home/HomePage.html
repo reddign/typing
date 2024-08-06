@@ -1,0 +1,45 @@
+<html lang="en">
+<head>
+    <link id="theme" rel="stylesheet" href="HPLightMode.css"></link>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Typing</title>
+</head>
+<body>
+    <header>
+        <nav>
+            <ul>
+                <li>
+                    <a href="test" style="margin-top: 0px;">
+                        <img id="TEST" src="download.png" alt="pizza" height="50px">
+                    </a>
+                </li>
+                <li><a href="test">Test Text Link</a></li>
+                <button onclick="swapStyleSheet()">DarkLight Button</button>
+                <li><button onclick="swapStyleSheet()">DarkLight Button</button></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <!-- <button onclick="swapStyleSheet()">DarkLight Button</button> -->
+    </main>
+    <script>
+        function swapStyleSheet(){
+
+            var theme = document.getElementsByTagName('link')[0];
+
+            if (theme.getAttribute('href') == 'HPLightMode.css') { 
+                theme.setAttribute('href', 'HPDarkMode.css'); 
+            } else { 
+                theme.setAttribute('href', 'HPLightMode.css'); 
+            } 
+
+            // if(document.getElementById('LightMode').hasAttribute('href')=='LightMode'){
+            // document.getElementById('LightMode').setAttribute('href','DarkMode.css');
+            // } else{
+            // document.getElementById('LightMode').setAttribute('href','LightMode.css');
+            // }
+        }
+        </script>
+</body>
+</html>

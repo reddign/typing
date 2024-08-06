@@ -1,0 +1,40 @@
+
+ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: rgb(23, 8, 86);
+}
+
+li {
+    float: left;
+}
+
+li a {
+    /* 1 pixel black shadow to left, top, right and bottom */
+    text-shadow: -1px 0 #2c2e03, 0 1px #2c2e03, 1px 0 #2c2e03, 0 -1px #2c2e03;
+
+    font-family: sans; color: rgb(246, 245, 172);
+
+    display: block;
+    color: rgb(246, 245, 172);
+    padding: 24px 26px;
+    text-decoration: none;
+    font-size: 20px;
+    margin-top: 15px;
+}
+
+li a:hover {
+    background-image: radial-gradient(rgb(38, 12, 132), rgb(23, 8, 86) 60%);
+    /*background-color: rgb(22, 2, 94);*/
+}
+
+header {
+    text-align: center;
+}
+
+body {
+    background-image: linear-gradient(rgb(31, 8, 63), rgb(27, 3, 111) 70%);
+    /* rgb(42, 11, 154) */
+}
