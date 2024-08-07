@@ -38,12 +38,13 @@ class Test {
         this.startTime = -1;
         this.wpm = -1;
         this.accuracy = -1;
+        input.disabled = true;
 
         // get test text
         textP.innerText = "Fetching words. . .";
         if (level == null) {
             textP.innerText = "Invalid URL: please select a level first!";
-            throw new Error("No level provided");
+            return;
         }
         httpAsyncGet("../level/fetch.php?level=" + new String(level).toString(), (request) => {
             switch (request.status) {
@@ -62,7 +63,6 @@ class Test {
             }
         })
         this.text = textP;
-        input.disabled = true;
         this.input = input;
         this.result = result;
     }
