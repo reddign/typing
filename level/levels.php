@@ -126,15 +126,17 @@ class Level {
     public static function load_cached_levels(): void {
         static $fname = "levelcache.dat";
 
-        $contents = file($fname, FILE_IGNORE_NEW_LINES | FILE_SKIP_EMPTY_LINES);
-        if (filemtime($fname) < filemtime("levels.ini") || sizeof($contents) != 1) {
+        $file = fopen($fname, file_exists($fname)? 'r+' : 'w+');
+        if (!$file || filemtime($fname) < filemtime("levels.ini") || feof($file) || !$str = fgets($file)) {
             // level data was changed -> rebuild cache
             Level::load_levels();
-            file_put_contents($fname, serialize(Level::$levels));
+            
+            fwrite($file, serialize(Level::$levels));
         } else {
             // load cache from file
-            Level::$levels = unserialize($contents[0]);
+            Level::$levels = unserialize(rtrim($str));
         }
+        fclose($file);
     }
 
     /**
