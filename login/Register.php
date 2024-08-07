@@ -1,23 +1,15 @@
 <?php
 
-$email = $_POST["email"];
-$username = $_POST["username"];
-$password = $_POST["pass"];
-$LD = $_POST["LD"];
+require '../libs/sql.php';
+$email = $connection->escape_string($_POST["email"]);
+$username = $connection->escape_string($_POST["username"]);
+$password = $connection->escape_string($_POST["pass"]);
+$LD = $connection->escape_string($_POST["LD"]);
 
-$sql = "INSERT INTO users
-(email,username,password,LD)
-Values
-('{$email}','{$username}','{$password}','{$LD}')";
-
-
-$mysqli = new mysqli("195.35.59.14","u121755072_typing","EdV@7~4B>c","u121755072_typingdb");
-if ($mysqli->connect_errno) {
-    echo "Failed to connect to MySQL: " . $mysqli->connect_error;
+$connection->query("INSERT INTO users (email,username,password,LD) VALUES ('{$email}','{$username}','{$password}','{$LD}')");
+if ($connection) {
+    header("location:index.html");
+} else {
+    die("Couldn't add user. Please try again");
 }
-
-$stmt = $mysqli->prepare($sql);
-$stmt->execute();
-
-header("location:index.html");
 ?>
