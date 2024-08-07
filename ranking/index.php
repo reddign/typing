@@ -41,7 +41,23 @@
 
           <?php
             require '../libs/sql.php';
+            require 'rank.php';
 
+            $rank_wpm = get_leaderboard($connection, RankType::WPM, 30);
+            
+            $prev_val = null;
+            $rank = 0;
+            for ($i = 0; $i < sizeof($rank_wpm); $i++) {
+                $username = $rank_wpm[$i]['username'];
+                $wpm = $rank_wpm[$i]['wpm'];
+
+                if ($prev_val != $wpm) {
+                    // user tied with 1+ others, so the rank should stay the same
+                    $rank++;
+                }
+                echo "<br><b>#$rank</b> $username - $wpm wpm";
+                $prev_val = $wpm;
+            }
             ?>
         </main>
      </body>
