@@ -7,6 +7,7 @@
 - [login](login) - pages for user login and registration
 - [ranking](ranking) - user rankings page(s)
 - [home](home) - website homepage
+- [util](util) - utility scripts
 
 #### Running from source
 - Clone the repo with ```git clone https://github.com/reddign/typing.git```
