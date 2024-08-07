@@ -4,7 +4,8 @@ require '../libs/sql.php';
 
 $username = $_POST["username"];
 $password = $_POST["password"];
-$LD = $_POST["LD"];
+$L = $_POST["L"];
+$D = $_POST["D"];
 
 
 $query = $connection->query("SELECT * FROM users WHERE username='{$username}' and password=MD5('{$password}') and verified=1");
