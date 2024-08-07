@@ -3,14 +3,15 @@
 // example usage: https://typing.etownmca.com/level/fetch.php?table=TABLENAME&words=20&lower=true
 
 require 'levels.php';
-Level::load_levels();
 
 if (!isset($_GET['level'])) {
     http_response_code(400);
     die("Missing level name in GET request");
 }
 
+Level::load_cached_levels();
 $level = Level::get_level($_GET['level']);
+
 if (!$level) {
     print_r($level);
     http_response_code(400);

@@ -118,10 +118,29 @@ class Level {
         die("get(): $key is not set and no default was provided");
     }
 
+
+    /**
+     * Attempt to load cached level data. If the cache is dirty or doesn't exist,
+     * load_levels() is called and the cache is updated.
+     */
+    public static function load_cached_levels(): void {
+        static $fname = "levelcache.dat";
+
+        $contents = file($fname, FILE_IGNORE_NEW_LINES | FILE_SKIP_EMPTY_LINES);
+        if (filemtime($fname) < filemtime("levels.ini") || sizeof($contents) != 1) {
+            // level data was changed -> rebuild cache
+            Level::load_levels();
+            file_put_contents($fname, serialize(Level::$levels));
+        } else {
+            // load cache from file
+            Level::$levels = unserialize($contents[0]);
+        }
+    }
+
     /**
      * Load level data from the .ini file and save it to $levels
      */
-    public static function load_levels(): void {
+    private static function load_levels(): void {
         // load levels
         $ini = parse_ini_file('levels.ini', true);
         if (!$ini) {
@@ -187,7 +206,7 @@ class Level {
      */
     public static function echo(): void {
         if (empty(Level::$levels)) {
-            Level::load_levels();
+            Level::load_cached_levels();
         }
 
         // put levels in their categories
