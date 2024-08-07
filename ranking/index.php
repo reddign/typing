@@ -38,5 +38,10 @@
 
         <main>
           <img src="poduim2.png" alt="Poduim" style="width:40%;">
+
+          <?php
+            require '../libs/sql.php';
+
+            ?>
         </main>
      </body>
