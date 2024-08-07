@@ -170,6 +170,7 @@ class Test {
         elements.wpm.innerText = `WPM: ${this.wpm}`;
         elements.accuracy.innerText = `Accuracy: ${this.accuracy}%`
         this.input.disabled = true;
+        this.input.classList.add("hidden");
         // must be a callback or <Enter> keypress will both end and start a test
         setTimeout(() => elements.playAgain.focus(), 0);
     }
