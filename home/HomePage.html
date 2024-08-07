@@ -11,7 +11,7 @@
             <ul>
                 <li>
                     <a href="HomePage.html" style="margin-top: 0px;">
-                        <img id="Logo" src="Logo2.png" alt="Typing logo" height="50px">
+                        <img id="Logo" src="LogoLightMode.png" alt="Typing logo" height="50px">
                     </a>
                 </li>
                 <li><a href="test">Test Text Link</a></li>
@@ -29,11 +29,14 @@
         function swapStyleSheet(){
 
             var theme = document.getElementsByTagName('link')[0];
+            var logo = document.getElementById("Logo");
 
             if (theme.getAttribute('href') == 'HPLightMode.css') { 
-                theme.setAttribute('href', 'HPDarkMode.css'); 
+                theme.setAttribute('href', 'HPDarkMode.css');
+                logo.setAttribute('src', 'LogoDarkMode.png');
             } else { 
-                theme.setAttribute('href', 'HPLightMode.css'); 
+                theme.setAttribute('href', 'HPLightMode.css');
+                logo.setAttribute('src', 'LogoLightMode.png'); 
             } 
 
             // if(document.getElementById('LightMode').hasAttribute('href')=='LightMode'){
