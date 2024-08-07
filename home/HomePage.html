@@ -26,24 +26,31 @@
     <main>
     </main>
     <script>
-        function swapStyleSheet(){
+        LD = sessionStorage.getItem("Mode");
 
-            var theme = document.getElementsByTagName('link')[0];
-            var logo = document.getElementById("Logo");
+        var theme = document.getElementsByTagName('link')[0];
+        var logo = document.getElementById("Logo");
+
+        if (LD == 1) { 
+                theme.setAttribute('href', 'HPDarkMode.css');
+                logo.setAttribute('src', 'LogoDarkMode.png');
+        } else { 
+                theme.setAttribute('href', 'HPLightMode.css');
+                logo.setAttribute('src', 'LogoLightMode.png');
+        }
+        function swapStyleSheet(){
 
             if (theme.getAttribute('href') == 'HPLightMode.css') { 
                 theme.setAttribute('href', 'HPDarkMode.css');
                 logo.setAttribute('src', 'LogoDarkMode.png');
+                LD = 1
+
             } else { 
                 theme.setAttribute('href', 'HPLightMode.css');
-                logo.setAttribute('src', 'LogoLightMode.png'); 
-            } 
-
-            // if(document.getElementById('LightMode').hasAttribute('href')=='LightMode'){
-            // document.getElementById('LightMode').setAttribute('href','DarkMode.css');
-            // } else{
-            // document.getElementById('LightMode').setAttribute('href','LightMode.css');
-            // }
+                logo.setAttribute('src', 'LogoLightMode.png');
+                LD = 0 
+            }
+            sessionStorage.setItem("Mode", LD);
         }
         </script>
 </body>

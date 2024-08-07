@@ -22,6 +22,32 @@
             <button onclick="loginForm(event)">Log In</button>
         </form>
         <a href="register.html">Register</a>
+        <br>
+        <a href="../home/HomePage.html"><button class="goHome">Home HomePage</button></a>
+        <button class="light-dark" onclick="swapStyleSheet()">Switch Mode</button>
     </div>
+    <script>
+        LD = sessionStorage.getItem("Mode");
+
+        var theme = document.getElementsByTagName('link')[0];
+
+        if (LD == 1) { 
+                theme.setAttribute('href', 'LogDarkMode.css');
+        } else { 
+                theme.setAttribute('href', 'LogLightMode.css'); 
+        }
+        function swapStyleSheet(){
+
+            if (theme.getAttribute('href') == 'LogLightMode.css') { 
+                theme.setAttribute('href', 'LogDarkMode.css');
+                LD = 1
+            } else { 
+                theme.setAttribute('href', 'LogLightMode.css');
+                LD = 0 
+            } 
+
+            sessionStorage.setItem("Mode", LD);
+        }
+        </script>
 </body>
 </html>
