@@ -22,9 +22,13 @@
                 <label for="password">Password</label>
                 <input type="password" id="password" name="password" required>
             </div>
-            <h1>Light or Dark mode</h1><br>
-            <input type="radio" name="choice" value="L"> Light
-            <input type="radio" name="choice" value="D"> Dark
+            Light or Dark mode
+            <select name="LD" id="LD" required="">
+                <option value=""></option>
+                <option value="L">L</option>
+                <option value="D">Dark</option>
+               
+            </select>
             <div class="form-group">
                 <input type="submit" value="Register">
             </div>
@@ -37,9 +41,3 @@
 </html>
 
 
-<select name="sause_type" id="sause_type" required="">
-    <option value=""></option>
-    <option value="marinara">Marinara</option>
-    <option value="meat">Meat</option>
-    <option value="pesto">Pesto</option>
-</select>
