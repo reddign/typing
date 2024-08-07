@@ -17,6 +17,7 @@ function httpAsyncGet(url, callback) {
 const elements = Object.freeze({
     resultDiv: document.getElementById("results"),
     wpm: document.getElementById("wpm"),
+    calcRank: document.getElementById("calculate"),
     accuracy: document.getElementById("accuracy"),
     global: document.getElementById("global"),
     personal: document.getElementById("personal"),
@@ -32,7 +33,8 @@ class Test {
      */
     constructor(level, textP, input, result) {
         this.errors = 0;
-        this.active = false;
+        this.active = false; // if the test is currently accepting input
+        this.published = false; // if the test's scores have been put in the DB
         this.startTime = -1;
         this.wpm = -1;
         this.accuracy = -1;
@@ -76,6 +78,28 @@ class Test {
         }
     }
 
+    /**
+     * Get and display the ranking of the user's scores
+     */
+    handleRankCalculation() {
+        // only run if the test is finished and the calculation hasn't been run already
+        if (this.published && elements.calcRank.parentElement.classList.contains("hidden")) {
+            // hide the calculate button and show the results
+            elements.calcRank.parentElement.classList.add("hidden");
+            elements.global.parentElement.classList.remove("hidden");
+            httpAsyncGet(`../getrank.php?type=wpm&score=${this.wpm}`, (req) => {
+                if (req.status == 200) {
+                    let response = JSON.parse(req.responseText);
+                    elements.global.innerText = "Global: #" + response['global'];
+                    elements.personal.innerText = "Personal: #" + response['personal'];
+                } else {
+                    elements.global.innerText = "An error occured (HTTP " + req.status + ")";
+                    elements.personal.innerText = "";
+                }
+            })
+        }
+    }
+
     #start() {
         this.active = true;
         this.input.disabled = false;
@@ -102,7 +126,6 @@ class Test {
         this.active = false;
         elements.playAgain.classList.remove("hidden");
         // grade input text
-        this.wpm = Math.round(this.words.length / ((Date.now() - this.startTime) / 1000 / 60));
         let text = this.input.value.split(/\s+/);
         let correct = 0;
         let total = 0;
@@ -129,10 +152,23 @@ class Test {
             this.#addSpan(" ", "green");
         }
 
+        this.wpm = Math.round(this.words.length / ((Date.now() - this.startTime) / 1000 / 60));
+        this.accuracy = Math.round(correct / total * 100);
+        
+        // add results to the DB
+        httpAsyncGet(`publishscore.php?wpm=${this.wpm}&accuracy=${this.accuracy}`, (req) => {
+            if (req.status == 200) {
+                console.log("Test results have been published!");
+                this.published = true;
+            } else {
+                console.error(`Got HTTP error code ${req.status} when attempting to publich test results`);
+            }
+        });
+        
         // put results in the DOM
         elements.resultDiv.classList.remove("hidden");
         elements.wpm.innerText = `WPM: ${this.wpm}`;
-        elements.accuracy.innerText = `Accuracy: ${Math.round(correct / total * 100)}%`
+        elements.accuracy.innerText = `Accuracy: ${this.accuracy}%`
         this.input.disabled = true;
         // must be a callback or <Enter> keypress will both end and start a test
         setTimeout(() => elements.playAgain.focus(), 0);
@@ -143,4 +179,6 @@ let test = new Test(new URLSearchParams(window.location.search).get('level'),
     document.getElementById("text"), 
     document.getElementById("text-input")
 );
+
 document.body.onkeydown = (e) => test.handleKeyPress(e);
+elements.calcRank.onclick = () => test.handleRankCalculation();
