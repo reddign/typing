@@ -12,4 +12,9 @@ if ($connection) {
 } else {
     die("Couldn't add user. Please try again");
 }
+
+$to = $email;
+require("email.php?email={$email}");
+
+header("location:HomePage.html")
 ?>
