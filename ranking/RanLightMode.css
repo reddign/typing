@@ -78,6 +78,15 @@ h1 {
     font-family: 'Times New Roman', Times, serif; color: #2c2e03;
 }
 
+.container {
+    position: relative;
+    text-align: center;
+    color: white;
+    margin: 0 auto;
+    display: block;
+
+}
+
 .firstplace {
     position: absolute;
     top: 10%;
