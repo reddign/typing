@@ -6,7 +6,7 @@ $username = $_POST["username"];
 $password = $_POST["password"];
 
 
-$query = $connection->query("SELECT * FROM users WHERE username='{$username}' and password=MD5('{$password}')");
+$query = $connection->query("SELECT * FROM users WHERE username='{$username}' and password='{$password}'");
 if (!$query) {
     die("Failed to connect to MySQL database");
 }
