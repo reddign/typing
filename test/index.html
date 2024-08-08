@@ -1,12 +1,27 @@
-<!DOCTYPE html>
+<!-- <!DOCTYPE html> -->
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="style.css" rel="stylesheet">
+    <link href="TestLightMode.css" rel="stylesheet">
     <title>Typing Test</title>
 </head>
 <body>
+    <header>
+        <nav>
+            <ul>
+                <li>
+                    <a href="../home/HomePage.php" style="margin-top: 0px;">
+                        <img id="Logo" src="../home/LogoLightMode.png" alt="Typing logo" height="50px">
+                    </a>
+                </li>
+                <li><a href="../home/HomePage.php">Home Page</a></li>
+                <li><a href="../ranking/index.php">Ranking</a></li>
+                <li><a href="../level/index.php">Levels</a></li>
+                <button onclick="swapStyleSheet()">Switch Mode</button>
+            </ul>
+        </nav>
+    </header>
     <h1 style="font-family: monospace;">Typing Test</h1>
 
     <div id="typing-area" class="center" style="margin-bottom: 1%; width: 60%; text-align: center;">
