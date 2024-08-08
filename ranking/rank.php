@@ -25,7 +25,7 @@ function get_rankings(SQLConnection $connection, int $userId, RankType $type, st
         }
     }
     for ($i = 0; $i < sizeof($global_scores); $i++) {
-        if ($personal_scores[$i][$type->value] == $score) {
+        if ($global_scores[$i][$type->value] == $score) {
             $g_rank = $i + 1;
             break;
         }

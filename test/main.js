@@ -83,11 +83,12 @@ class Test {
      */
     handleRankCalculation() {
         // only run if the test is finished and the calculation hasn't been run already
-        if (this.published && elements.calcRank.parentElement.classList.contains("hidden")) {
+        if (this.published && !elements.calcRank.parentElement.classList.contains("hidden")) {
+            console.log("Fetching rankings");
             // hide the calculate button and show the results
             elements.calcRank.parentElement.classList.add("hidden");
             elements.global.parentElement.classList.remove("hidden");
-            httpAsyncGet(`../getrank.php?type=wpm&score=${this.wpm}`, (req) => {
+            httpAsyncGet(`../ranking/getrank.php?type=wpm&score=${this.wpm}`, (req) => {
                 if (req.status == 200) {
                     let response = JSON.parse(req.responseText);
                     elements.global.innerText = "Global: #" + response['global'];
@@ -125,6 +126,8 @@ class Test {
     stop() {
         this.active = false;
         elements.playAgain.classList.remove("hidden");
+        elements.calcRank.innerText = "Publishing Scores...";
+        elements.calcRank.disabled = true;
         // grade input text
         let text = this.input.value.split(/\s+/);
         let correct = 0;
@@ -161,6 +164,8 @@ class Test {
             if (req.status == 200) {
                 console.log("Test results have been published!");
                 this.published = true;
+                elements.calcRank.innerText = "Calculate";
+                elements.calcRank.disabled = false;
             } else {
                 console.error(`Got HTTP error code ${req.status} when attempting to publich test results`);
             }

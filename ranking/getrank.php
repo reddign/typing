@@ -18,17 +18,17 @@ if (!(isset($_GET['type']) && isset($_GET['score']))) {
 }
 
 $type = RankType::tryFrom($_GET['type']);
-$score = $_GET['score'];
+$score = strval($_GET['score']);
 if ($type == null) {
     http_response_code(400);
     exit();
 }
 
-$rank = $connection->query("SELECT id FROM users WHERE username = '" . $_SESSION['UserID'] . "'");
-if (sizeof($rank) == 0) {
+$id = $connection->query("SELECT id FROM users WHERE username = '" . $_SESSION['UserID'] . "'");
+if (sizeof($id) == 0) {
     http_response_code(409);
     exit();
 }
 
-echo json_encode(get_rankings($connection, $rank[0]['id'], $type, $score));
+echo json_encode(get_rankings($connection, $id[0]['id'], $type, $score));
 ?>
