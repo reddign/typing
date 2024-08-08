@@ -14,5 +14,5 @@ if ($connection) {
 }
 
 
-header("location:../home/HomePage.html")
+header("location:../home/HomePage.php")
 ?>

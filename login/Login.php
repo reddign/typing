@@ -20,5 +20,5 @@ if (sizeof($query) == 0) {
 // user exists, proceed to signin
 $_SESSION["LoggedIn"]="YES";
 $_SESSION["UserID"]=$_POST["username"];
-header("location:../home/HomePage.html");
-?>
+header("location:../home/HomePage.php");
+?>  

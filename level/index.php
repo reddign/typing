@@ -12,7 +12,7 @@
         <nav>
             <ul>
                 <li>
-                    <a href="../home/HomePage.html" style="margin-top: 0px;">
+                    <a href="../home/HomePage.php" style="margin-top: 0px;">
                         <img id="Logo" src="../home/LogoLightMode.png" alt="Typing logo" height="50px">
                     </a>
                 </li>
