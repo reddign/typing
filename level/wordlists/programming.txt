@@ -1,0 +1,11 @@
+computer programming or coding is the composition of sequences of instructions, called programs, that computers can follow to perform tasks
+it involves designing and implementing algorithms, step-by-step specifications of procedures, by writing code in one or more programming languages
+programmers typically use high-level programming languages that are more easily intelligible to humans than machine code
+machine code was the language of early programs, written in the instruction set of the particular machine, often in binary notation
+data and instructions were once stored on external punched cards, which were kept in order and arranged in program decks
+high-level languages made the process of developing a program simpler and more understandable, and less bound to the underlying hardware
+FORTRAN, the first widely used high-level language to have a functional implementation, came out in 1957
+compiled languages allow the programmer to write programs in terms that are syntactically richer, and more capable of abstracting the code
+readability refers to the ease with which a human reader can comprehend the purpose, control flow, and operation of source code
+Big O notation expresses resource use, such as execution time or memory consumption, in terms of the size of an input
+the first known actual bug causing a problem in a computer was a moth, trapped inside a Harvard mainframe
