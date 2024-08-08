@@ -11,7 +11,7 @@
 <?php
 // create list of levels
 require 'levels.php';
-Level::echo();
+Level::print_cached_levels_page();
 ?>
 
 </body>

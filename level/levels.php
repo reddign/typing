@@ -120,7 +120,7 @@ class Level {
 
 
     /**
-     * Attempt to load cached level data. If the cache is dirty or doesn't exist,
+     * Attempt to load cached level data. If the cache is outdated or doesn't exist,
      * load_levels() is called and the cache is updated.
      */
     public static function load_cached_levels(): void {
@@ -130,11 +130,38 @@ class Level {
         if (!$file || filemtime($fname) < filemtime("levels.ini") || feof($file) || !$str = fgets($file)) {
             // level data was changed -> rebuild cache
             Level::load_levels();
-            
+            ftruncate($file, 0); // clear any existing contents first
             fwrite($file, serialize(Level::$levels));
         } else {
             // load cache from file
             Level::$levels = unserialize(rtrim($str));
+        }
+        fclose($file);
+    }
+
+    /**
+     * Attempt to print the cached level page. If the cache is outdated or doesn't exist,
+     * the page is regenerated.
+     */
+    public static function print_cached_levels_page(): void {
+        static $fname = "levelpagecache.html";
+
+        $file = fopen($fname, file_exists($fname)? 'r+' : 'w+');
+        if (!$file || filemtime($fname) < filemtime("levels.ini") || feof($file) || !$str = fgets($file)) {
+            // cache is outdated
+            $str = '';
+            Level::load_cached_levels();
+            if (sizeof(Level::$levels) == 0) {
+                Level::load_cached_levels();
+            }
+            $str = '';
+            Level::make_category_map(Level::$levels, $str);
+            ftruncate($file, 0); // clear any existing contents first
+            fwrite($file, $str);
+            echo $str;
+        } else {
+            // cache is valid
+            echo $str;
         }
         fclose($file);
     }
@@ -203,39 +230,31 @@ class Level {
         return false;
     }
 
-    /**
-     * Echo out all the levels and their categories
-     */
-    public static function echo(): void {
-        if (empty(Level::$levels)) {
-            Level::load_cached_levels();
-        }
-
-        // put levels in their categories
-        Level::print_category_map(Level::$levels, '', 0);
-    }
-
-    /** Recursively print a map */
-    private static function print_category_map(array &$map, string $category, int $layer): void {
+    /** Recursively create an HTML string that displays all the levels in their respective categories */
+    private static function make_category_map(array &$map, string &$html, string $category = '', int $layer = 0): void {
         if ($layer > 0) {
             if ($layer > 6) {
                 $layer = 6;
             }
-            echo "<h$layer>$category</h$layer>";
+            $html .= "<h$layer>$category</h$layer>";
+            // echo "<h$layer>$category</h$layer>";
         }
-        echo "<ul>";
+        $html .= "<ul>";
+        // echo "<ul>";
         // add tests in the category, then add subcategories
         foreach ($map as $key => $value) {
             if ($value instanceof Level) {
-                echo "<li><a href=\"../test/?level=$value->source_name\">$value->name</a></li>";
+                $html .= "<li><a href=\"../test/?level=$value->source_name\">$value->name</a></li>";
+                // echo "<li><a href=\"../test/?level=$value->source_name\">$value->name</a></li>";
             }
         }
         foreach ($map as $key => $value) {
             if (is_array($value)) {
-                Level::print_category_map($value, $key, $layer + 1);
+                Level::make_category_map($value, $html, $key, $layer + 1);
             }
         }
-        echo "</ul>";
+        $html .= "</ul>";
+        // echo "</ul>";
     }
 }
 
