@@ -92,19 +92,20 @@ h1 {
 .firstplace {
     position: absolute;
     top: 10%;
-    left: 40%;
-    font-size: 100%;
-    font-size-adjust: inherit;
+    left: 37%;
+    color: black;
 }
 
 .secondplace {
     position: absolute;
-    top: 60px;
-    left: 10px;
+    top: 25%;
+    left: 6%;
+    color: black;
 }
 
 .thirdplace {
     position: absolute;
-    top: 75px;
-    left: 210px;
+    top: 32%;
+    left: 70%;
+    color: black;
 }
