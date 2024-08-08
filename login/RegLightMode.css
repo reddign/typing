@@ -101,3 +101,9 @@ p {
 select {
     margin-top: 15px;
 }
+
+h2 {
+    text-shadow: -1px 0 #f6f5ac, 0 1px #f6f5ac, 1px 0 #f6f5ac, 0 -1px #f6f5ac;
+
+    font-family: 'Times New Roman', Times, serif; color: #2c2e03;
+}

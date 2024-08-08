@@ -36,7 +36,32 @@
                 <p>Already have an account? <a href="index.html">Login here</a>.</p>
             </div>
         </form>
+    <a href="../home/HomePage.html"><button class="goHome">Home Page</button></a>
+    <button class="light-dark" onclick="swapStyleSheet()">Switch Mode</button>
     </div>
+    <script>
+        LD = sessionStorage.getItem("Mode");
+
+        var theme = document.getElementsByTagName('link')[0];
+
+        if (LD == 1) { 
+                theme.setAttribute('href', 'RegDarkMode.css');
+        } else { 
+                theme.setAttribute('href', 'RegLightMode.css'); 
+        }
+        function swapStyleSheet(){
+
+            if (theme.getAttribute('href') == 'RegLightMode.css') { 
+                theme.setAttribute('href', 'RegDarkMode.css');
+                LD = 1
+            } else { 
+                theme.setAttribute('href', 'RegLightMode.css');
+                LD = 0 
+            } 
+
+            sessionStorage.setItem("Mode", LD);
+        }
+        </script>
 </body> 
 </html>
 
