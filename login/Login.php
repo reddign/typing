@@ -21,4 +21,4 @@ if (sizeof($query) == 0) {
 $_SESSION["LoggedIn"]="YES";
 $_SESSION["UserID"]=$_POST["username"];
 header("location:../home/HomePage.html");
-?>  
+?>
