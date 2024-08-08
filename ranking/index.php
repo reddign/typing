@@ -25,7 +25,36 @@
         </header>
 
         <main>
-            <img id="Pod" src="poduim2.png" alt="Podium">
+
+            <script>
+                LD = sessionStorage.getItem('Mode');
+
+                var theme = document.getElementsByTagName('link')[0];
+                var logo = document.getElementById('Logo');
+
+                if (LD == 1) { 
+                        theme.setAttribute('href', 'RanDarkMode.css');
+                        logo.setAttribute('src', '../home/LogoDarkMode.png');
+                } else { 
+                        theme.setAttribute('href', 'RanLightMode.css');
+                        logo.setAttribute('src', '../home/LogoLightMode.png');
+                }
+                function swapStyleSheet(){
+
+                    if (theme.getAttribute('href') == 'RanLightMode.css') { 
+                        theme.setAttribute('href', 'RanDarkMode.css');
+                        logo.setAttribute('src', '../home/LogoDarkMode.png');
+                        LD = 1
+
+                    } else { 
+                        theme.setAttribute('href', 'RanLightMode.css');
+                        logo.setAttribute('src', '../home/LogoLightMode.png');
+                        LD = 0 
+                    }
+                    sessionStorage.setItem('Mode', LD);
+                    console.log(LD);
+                }
+        </script>
         <?php
         require '../libs/sql.php';
         require 'rank.php';
@@ -69,35 +98,5 @@
             }
         ?>
         </main>
-        
-        <script>
-                LD = sessionStorage.getItem('Mode');
-
-                var theme = document.getElementsByTagName('link')[0];
-                var logo = document.getElementById('Logo');
-
-                if (LD == 1) { 
-                        theme.setAttribute('href', 'RanDarkMode.css');
-                        logo.setAttribute('src', '../home/LogoDarkMode.png');
-                } else { 
-                        theme.setAttribute('href', 'RanLightMode.css');
-                        logo.setAttribute('src', '../home/LogoLightMode.png');
-                }
-                function swapStyleSheet(){
-
-                    if (theme.getAttribute('href') == 'RanLightMode.css') { 
-                        theme.setAttribute('href', 'RanDarkMode.css');
-                        logo.setAttribute('src', '../home/LogoDarkMode.png');
-                        LD = 1
-
-                    } else { 
-                        theme.setAttribute('href', 'RanLightMode.css');
-                        logo.setAttribute('src', '../home/LogoLightMode.png');
-                        LD = 0 
-                    }
-                    sessionStorage.setItem('Mode', LD);
-                    console.log(LD);
-                }
-        </script>
      </body>
 </thml>
