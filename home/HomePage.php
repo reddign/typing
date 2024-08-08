@@ -14,6 +14,7 @@
                         <img id="Logo" src="LogoLightMode.png" alt="Typing logo" height="50px">
                     </a>
                 </li>
+                <li><a href="HomePage.html">Home Page</a></li>
                 <li><a href="../ranking/index.php">Ranking</a></li>
                 <?php
                 session_start();

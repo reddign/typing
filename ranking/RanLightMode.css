@@ -72,10 +72,12 @@ h2 {
     font-family: 'Times New Roman', Times, serif; color: #2c2e03;
 }
 
-h1 {  
+h1 {
     text-shadow: -1px 0 #f6f5ac, 0 1px #f6f5ac, 1px 0 #f6f5ac, 0 -1px #f6f5ac;
 
     font-family: 'Times New Roman', Times, serif; color: #2c2e03;
+
+    margin-bottom: -48px;
 }
 
 .container {

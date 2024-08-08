@@ -3,7 +3,7 @@
 <html>
 
     <head>
-        <link rel="stylesheet" href="RanLightMode.css">
+        <link rel="stylesheet" href="RanDarkMode.css">
         <title>Ranking page</title>   
     </head>
 
@@ -18,6 +18,7 @@
                         </a>
                     </li>
                     <li><li><a href="../home/HomePage.php">Home Page</a></li></li>
+                    <li><a href="index.php">Ranking</a></li>
                     <button onclick="swapStyleSheet()">Switch Mode</button>
                   </ul>
               </nav>

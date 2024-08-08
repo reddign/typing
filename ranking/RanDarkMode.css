@@ -76,6 +76,8 @@ h1 {
     text-shadow: -1px 0 #2c2e03, 0 1px #2c2e03, 1px 0 #2c2e03, 0 -1px #2c2e03;
 
     font-family: 'Times New Roman', Times, serif; color: #f6f5ac;
+
+    margin-bottom: -48px;
 }
 
 .container {

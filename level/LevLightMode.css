@@ -29,11 +29,11 @@ nav ul .btn-group button {
     color: #2e0303;
 }
 
-li {
+nav li {
     float: left;
 }
 
-li a {
+nav li a {
     /* 1 pixel black shadow to left, top, right and bottom */
     text-shadow: -1px 0 #f6f5ac, 0 1px #f6f5ac, 1px 0 #f6f5ac, 0 -1px #f6f5ac;
 
@@ -47,13 +47,13 @@ li a {
     margin-top: 15px;
 }
 
-li a img {
+nav li a img {
     border-radius: 12px;
     background-color: #d3edfc;
     /*background-color: rgb(22, 2, 94);*/
 }
 
-li a:hover {
+nav li a:hover {
     background-image: radial-gradient(#b9e3fa, #E8F8FF 60%);
 }
 
@@ -64,4 +64,14 @@ header {
 body {
     background-image: linear-gradient(#B4DCED, #E8F8FF 70%);
     /* rgb(42, 11, 154) */
+}
+
+ul {
+    text-shadow: -1px 0 #f6f5ac, 0 1px #f6f5ac, 1px 0 #f6f5ac, 0 -1px #f6f5ac;
+
+    font-family: 'Times New Roman', Times, serif; color: #2c2e03;
+}
+
+ul li a {
+    text-shadow: none;
 }
