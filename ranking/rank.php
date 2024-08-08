@@ -38,11 +38,6 @@ function get_rankings(SQLConnection $connection, int $userId, RankType $type, st
 function get_leaderboard(SQLConnection $connection, RankType $type, int $maxEntries) {
     $query = $connection->query("SELECT IFNULL(u.username,'deleted user') AS 'username',max(s.$type->value) AS $type->value FROM scores s LEFT JOIN users u ON (u.id=s.userid) GROUP BY s.userid ORDER BY $type->value DESC LIMIT $maxEntries");
     return $query;
-    // $results = [];
-    // for ($i = 0; $i < sizeof($query); $i++) {
-    //     $results[$query[$i]['username']] = $query[$i][$type->value];
-    // }
-    // return $results;
 }
 
 ?>
