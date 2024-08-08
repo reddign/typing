@@ -2,12 +2,18 @@
 
 //Get the users email
 $email = $_GET["email"];
-
+require '../libs/sql.php';
 
 //Connect to the database
-$mysqli = new mysqli("195.35.59.14","u121755072_typing","EdV@7~4B>c","u121755072_typingdb");
-if ($mysqli->connect_errno) {
-    echo "Failed to connect to MySQL: " . $mysqli->connect_error;
+$query = $connection->query("SELECT * FROM users WHERE username='{$username}' and password=MD5('{$password}') and verified=1");
+if (!$query) {
+    die("Failed to connect to MySQL database");
+}
+
+if (sizeof($query) == 0) {
+    // invalid credentials, user doesn't exist
+    header('location:index.html');
+    exit();
 }
 
 $sql = "SELECT * FROM users 
