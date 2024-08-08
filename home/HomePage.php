@@ -16,6 +16,7 @@
                 </li>
                 <li><a href="HomePage.php">Home Page</a></li>
                 <li><a href="../ranking/index.php">Ranking</a></li>
+                <li><a href="../level/index.php">Levels</a></li>
                 <?php
                 session_start();
                 if (!isset($_SESSION['LoggedIn'])) {

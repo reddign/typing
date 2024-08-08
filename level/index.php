@@ -16,6 +16,9 @@
                         <img id="Logo" src="../home/LogoLightMode.png" alt="Typing logo" height="50px">
                     </a>
                 </li>
+                <li><a href="../home/HomePage.php">Home Page</a></li>
+                <li><a href="../ranking/index.php">Ranking</a></li>
+                <li><a href="index.php">Levels</a></li>
                 <button class="light-dark" onclick="swapStyleSheet()">Switch Mode</button>
             </ul>
         </nav>
@@ -48,12 +51,13 @@
             sessionStorage.setItem("Mode", LD);
         }
         </script>
-
+<div class="NotNav">
 <?php
 // create list of levels
 require 'levels.php';
 Level::print_cached_levels_page();
 ?>
+</div>
 
 </body>
 </html>

@@ -47,13 +47,13 @@ nav li a {
     margin-top: 15px;
 }
 
-nav li a img {
+nav a img {
     border-radius: 12px;
     background-color: #d3edfc;
     /*background-color: rgb(22, 2, 94);*/
 }
 
-nav li a:hover {
+nav a:hover {
     background-image: radial-gradient(#b9e3fa, #E8F8FF 60%);
 }
 
@@ -66,12 +66,29 @@ body {
     /* rgb(42, 11, 154) */
 }
 
-ul {
+.NotNav ul h2 {
     text-shadow: -1px 0 #f6f5ac, 0 1px #f6f5ac, 1px 0 #f6f5ac, 0 -1px #f6f5ac;
 
     font-family: 'Times New Roman', Times, serif; color: #2c2e03;
 }
 
-ul li a {
+.NotNav ul h1 {
+    text-shadow: -1px 0 #f6acac, 0 1px #f6acac, 1px 0 #f6acac, 0 -1px #f6acac;
+
+    font-family: 'Times New Roman', Times, serif; color: #2e0303;
+}
+
+.NotNav ul li a {
     text-shadow: none;
+    text-align: center;
+    color: #434609;
+    text-decoration: none;
+}
+
+.NotNav ul li a:hover {
+    text-decoration: underline;
+}
+    
+.NotNav ul li a:visited {
+    color: #858c07;
 }

@@ -19,6 +19,7 @@
                     </li>
                     <li><li><a href="../home/HomePage.php">Home Page</a></li></li>
                     <li><a href="index.php">Ranking</a></li>
+                    <li><a href="../level/index.php">Levels</a></li>
                     <button onclick="swapStyleSheet()">Switch Mode</button>
                   </ul>
               </nav>

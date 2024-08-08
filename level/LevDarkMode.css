@@ -29,11 +29,11 @@ nav ul .btn-group button {
     color: #f6acac;
 }
 
-li {
+nav li {
     float: left;
 }
 
-li a {
+nav li a {
     /* 1 pixel black shadow to left, top, right and bottom */
     text-shadow: -1px 0 #2c2e03, 0 1px #2c2e03, 1px 0 #2c2e03, 0 -1px #2c2e03;
 
@@ -47,13 +47,13 @@ li a {
     margin-top: 15px;
 }
 
-li a img {
+nav li a img {
     border-radius: 12px;
     background-color: #14074a;
     /*background-color: rgb(22, 2, 94);*/
 }
 
-li a:hover {
+nav li a:hover {
     background-image: radial-gradient(#260c84, #170856 60%);
 }
 
@@ -64,4 +64,31 @@ header {
 body {
     background-image: linear-gradient(#1f083f, #1b036f 70%);
     /* rgb(42, 11, 154) */
+}
+
+.NotNav ul h2 {
+    text-shadow: -1px 0 #2c2e03, 0 1px #2c2e03, 1px 0 #2c2e03, 0 -1px #2c2e03;
+
+    font-family: 'Times New Roman', Times, serif; color: #f6f5ac;
+}
+
+.NotNav ul h1 {
+    text-shadow: -1px 0 #2e0303, 0 1px #2e0303, 1px 0 #2e0303, 0 -1px #2e0303;
+
+    font-family: 'Times New Roman', Times, serif; color: #f6acac;
+}
+
+.NotNav ul li a {
+    text-shadow: none;
+    text-align: center;
+    color: #98d7e9;
+    text-decoration: none;
+}
+
+.NotNav ul li a:hover {
+    text-decoration: underline;
+}
+    
+.NotNav ul li a:visited {
+    color: #06717d;
 }
