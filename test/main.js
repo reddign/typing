@@ -152,7 +152,8 @@ class Test {
             this.#addSpan(" ", "green");
         }
 
-        this.wpm = Math.round(this.words.length / ((Date.now() - this.startTime) / 1000 / 60));
+        // according to wikipedia, every 5 characters (including spaces?) counts as 1 word
+        this.wpm = Math.round(Math.floor((total + this.words.length) / 5) / ((Date.now() - this.startTime) / 1000 / 60));
         this.accuracy = Math.round(correct / total * 100);
         
         // add results to the DB
