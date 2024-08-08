@@ -1,42 +1,31 @@
 <!DOCTYPE html>
 
-</html>
+<html>
 
-     <head>
-      <link rel="stylesheet" href="color.css">
-        <title>Ranking page</title>
+    <head>
+        <link rel="stylesheet" href="RanLightMode.css">
+        <title>Ranking page</title>   
+    </head>
 
-        <style>
-            ul {
-                list-style-type: none;
-                margin: 0;
-                padding: 0;
-                overflow: hidden;
-                background-color: #f1c639;
-            }
-
-            header {
-                text-align: center;
-            }
-
-            main {
-                text-align: center;
-            }
-        </style>
-     </head>
-
-     <body> 
+    <body> 
         <header>
               <nav>
-                  <ul> 
-                     </a></li>
+                  <ul>
                      <h1>WPM Leaderboard</h1>
+                    <li>
+                        <a href="../home/HomePage.html" style="margin-top: 0px;">
+                            <img id="Logo" src="../home/LogoLightMode.png" alt="Typing logo" height="50px">
+                        </a>
+                    </li>
+                    <li><li><a href="../home/HomePage.html">Home Page</a></li></li>
+                    <button onclick="swapStyleSheet()">Switch Mode</button>
                   </ul>
               </nav>
               <h2>Top 30 Players</h2>
         </header>
 
         <main>
+            <img id="Pod" src="poduim2.png" alt="Podium">
         <?php
         require '../libs/sql.php';
         require 'rank.php';
@@ -80,4 +69,35 @@
             }
         ?>
         </main>
+        
+        <script>
+                LD = sessionStorage.getItem('Mode');
+
+                var theme = document.getElementsByTagName('link')[0];
+                var logo = document.getElementById('Logo');
+
+                if (LD == 1) { 
+                        theme.setAttribute('href', 'RanDarkMode.css');
+                        logo.setAttribute('src', '../home/LogoDarkMode.png');
+                } else { 
+                        theme.setAttribute('href', 'RanLightMode.css');
+                        logo.setAttribute('src', '../home/LogoLightMode.png');
+                }
+                function swapStyleSheet(){
+
+                    if (theme.getAttribute('href') == 'RanLightMode.css') { 
+                        theme.setAttribute('href', 'RanDarkMode.css');
+                        logo.setAttribute('src', '../home/LogoDarkMode.png');
+                        LD = 1
+
+                    } else { 
+                        theme.setAttribute('href', 'RanLightMode.css');
+                        logo.setAttribute('src', '../home/LogoLightMode.png');
+                        LD = 0 
+                    }
+                    sessionStorage.setItem('Mode', LD);
+                    console.log(LD);
+                }
+        </script>
      </body>
+</thml>
