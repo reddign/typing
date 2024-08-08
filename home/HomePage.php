@@ -15,10 +15,24 @@
                     </a>
                 </li>
                 <li><a href="../ranking/index.php">Ranking</a></li>
-                <div class="btn-group">
-                    <a href="../login/index.html"><button>Log In</button></a>
-                    <a href="../login/Register.html"><button>Sign Up</button></a>
-                </div>
+                <?php
+                session_start();
+                if (!isset($_SESSION['LoggedIn'])) {
+                    echo "
+                    <div class=\"btn-group\">
+                        <a href=\"../login/index.html\"><button>Log In</button></a>
+                        <a href=\"../login/Register.html\"><button>Sign Up</button></a>
+                    </div>
+                    ";
+                } else {
+                    echo "
+                    <div class=\"btn-group\">
+                        <a href=\"../login/Logout.php\"><button>Sign Out</button></a>
+                    </div>
+                    ";
+                }
+                
+                ?>
                 <button onclick="swapStyleSheet()">Switch Mode</button>
             </ul>
         </nav>
