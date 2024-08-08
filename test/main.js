@@ -168,6 +168,7 @@ class Test {
                 elements.calcRank.disabled = false;
             } else {
                 console.error(`Got HTTP error code ${req.status} when attempting to publich test results`);
+                elements.calcRank.innerText = "Unavailable";
             }
         });
         
