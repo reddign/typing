@@ -22,6 +22,34 @@
             </ul>
         </nav>
     </header>
+    <script>
+        LD = sessionStorage.getItem("Mode");
+
+        var theme = document.getElementsByTagName('link')[0];
+        var logo = document.getElementById('Logo');
+
+        if (LD == 1) { 
+                theme.setAttribute('href', 'TestDarkMode.css');
+                logo.setAttribute('src', '../home/LogoDarkMode.png');
+        } else { 
+                theme.setAttribute('href', 'TestLightMode.css');
+                logo.setAttribute('src', '../home/LogoLightMode.png');
+        }
+        function swapStyleSheet(){
+
+            if (theme.getAttribute('href') == 'TestLightMode.css') { 
+                theme.setAttribute('href', 'TestDarkMode.css');
+                logo.setAttribute('src', '../home/LogoDarkMode.png');
+                LD = 1
+            } else { 
+                theme.setAttribute('href', 'TestLightMode.css');
+                logo.setAttribute('src', '../home/LogoLightMode.png');
+                LD = 0 
+            } 
+
+            sessionStorage.setItem("Mode", LD);
+        }
+        </script>
     <h1 style="font-family: monospace;">Typing Test</h1>
 
     <div id="typing-area" class="center" style="margin-bottom: 1%; width: 60%; text-align: center;">
@@ -39,7 +67,7 @@
         <div class="flex-child">
             <b>Statistics</b>
             <ul style="width: max-content">
-                <li id="wpm">WPM:</li>
+                <li id="wpm">WPM:</li><br>
                 <li id="accuracy">Accuracy: 100%</li>
             </ul>
         </div>
@@ -55,6 +83,6 @@
             </ul>
         </div>
     </div>
-    <script src="main.js"></script>
+        <script src="main.js"></script>
 </body>
 </html>
