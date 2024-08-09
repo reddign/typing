@@ -237,15 +237,12 @@ class Level {
                 $layer = 6;
             }
             $html .= "<h$layer>$category</h$layer>";
-            // echo "<h$layer>$category</h$layer>";
         }
         $html .= "<ul>";
-        // echo "<ul>";
         // add tests in the category, then add subcategories
         foreach ($map as $key => $value) {
             if ($value instanceof Level) {
                 $html .= "<li><a href=\"../test/?level=$value->source_name\">$value->name</a></li>";
-                // echo "<li><a href=\"../test/?level=$value->source_name\">$value->name</a></li>";
             }
         }
         foreach ($map as $key => $value) {
@@ -254,7 +251,6 @@ class Level {
             }
         }
         $html .= "</ul>";
-        // echo "</ul>";
     }
 }
 
